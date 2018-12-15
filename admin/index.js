@@ -8,7 +8,7 @@ if (process.env.NODE_ENV != 'production') {
     app.use(
         '/bundle.js',
         require('http-proxy-middleware')({
-            target: 'http://localhost:8081/'
+            target: 'http://localhost:8083/'
         })
     );
 } else {
@@ -18,11 +18,10 @@ if (process.env.NODE_ENV != 'production') {
 app.use(express.static("./public"));
 app.use(express.static("./uploads"));
 
-
 app.get('*', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(8080, function() {
+app.listen(8082, function() {
     console.log("I'm listening.");
 });

@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const compression = require('compression');
+const bodyParser = require("body-parser");
+const db = require("./dbuser");
 
+app.use(bodyParser.json());
 app.use(compression());
 
 if (process.env.NODE_ENV != 'production') {
@@ -17,6 +20,12 @@ if (process.env.NODE_ENV != 'production') {
 
 app.use(express.static("./public"));
 app.use(express.static("./uploads"));
+
+app.get("/getpages", async (req, res) => {
+
+    const results = await db.getContent(req.query.page);
+    res.json(results.rows);
+});
 
 
 app.get('*', function(req, res) {

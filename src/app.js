@@ -1,17 +1,29 @@
 import React from "react";
+import BtPictures from "./bt-pictures";
+import Nav from "./nav";
+import Carousel from "./carousel";
+import MainContent from "./maincontent";
 
 
 export default class App extends React.Component {
     constructor() {
-        super()
+        super();
     }
 
 
     render() {
         return(
-            <div className="appbegin">
-                <h1>HelloWorld</h1>
+            <div>
+
+                <BtPictures />
+
+                <Nav />
+
+                <Carousel />
+
+                <MainContent />
+
             </div>
-        )
+        );
     }
 }

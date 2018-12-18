@@ -4,6 +4,7 @@ import Nav from "./nav";
 import LeftNav from "./leftnav";
 import Mainrole from "./mainrole";
 import Pages from "./pages";
+import AddNewPage from "./newpage";
 
 
 export default class App extends React.Component {
@@ -31,6 +32,10 @@ export default class App extends React.Component {
 
                             <Route exact path = "/pages" render = { () => {
                                 return <Pages />;
+                            }} />
+
+                            <Route exact path = "/newpage" render = { () =>{
+                                return <AddNewPage />;
                             }} />
 
 

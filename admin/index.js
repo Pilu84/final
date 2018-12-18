@@ -88,6 +88,20 @@ app.get("/getpages", async (req, res) => {
     res.json(results.rows);
 });
 
+app.post("/setsinglepage/:id", async (req, res) => {
+
+    const results = await db.updateContent(req.params.id, req.body.maincontent);
+
+    res.json(results.rows);
+});
+
+app.post("/setsinglepagename/:id", async (req, res) => {
+
+
+    const results = await db.updatePageName(req.params.id, req.body.homepagename);
+
+    res.json(results.rows);
+});
 
 app.get('*', function(req, res) {
     if (!req.session.id) {

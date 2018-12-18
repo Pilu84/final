@@ -28,7 +28,7 @@ export default class Pages extends React.Component {
                 <div className="pages">
                     <h1>Pages</h1>
                     <div className="container">
-                        <Link to = "/singlepage/new"><button type="button" className = "btn btn-primary mt-5 mb-5">Add new page</button></Link>
+                        <Link to = "/newpage"><button type="button" className = "btn btn-primary mt-5 mb-5">Add new page</button></Link>
                         {!this.state.howNewpage && !this.state.showPage &&<table className="table table-hover">
                             <thead>
                                 <tr>

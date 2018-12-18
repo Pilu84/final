@@ -67,6 +67,12 @@ app.get("/logout", (req, res) => {
 });
 
 
+app.get("/getallpages", async (req, res) => {
+    const results = await db.getPages();
+
+    res.json(results.rows);
+});
+
 app.get('/login', function(req, res) {
     if (req.session.id) {
         res.redirect('/');
@@ -74,6 +80,14 @@ app.get('/login', function(req, res) {
         res.sendFile(__dirname + '/index.html');
     }
 });
+
+
+app.get("/getpages", async (req, res) => {
+
+    const results = await db.getContent(req.query.page);
+    res.json(results.rows);
+});
+
 
 app.get('*', function(req, res) {
     if (!req.session.id) {

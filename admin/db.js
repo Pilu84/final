@@ -10,3 +10,14 @@ exports.loginUser = email => {
         [email]
     );
 };
+
+exports.getPages = () => {
+    return db.query(`SELECT * FROM page`);
+};
+
+
+exports.getContent = id => {
+
+    return db.query(`SELECT * FROM page WHERE id = $1`, [id]);
+
+};

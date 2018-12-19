@@ -23,7 +23,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('wallpaper-M2010s.PNG');
+    background-image: url('https://s3.amazonaws.com/aquariumdesign/oYdLBAPAh6hLzc_8Ca9iiU96QC2J6q-f.PNG');
     background-position: center;
     padding: 2rem;
     min-height: 200px;
@@ -33,7 +33,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('./uploads/wallpaper-M2010s.PNG');
+    background-image: url('https://s3.amazonaws.com/aquariumdesign/oYdLBAPAh6hLzc_8Ca9iiU96QC2J6q-f.PNG');
     background-size: cover;
     background-position: center center;
     padding: 2rem;

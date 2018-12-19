@@ -18,18 +18,13 @@ export default class LeftNav extends React.Component{
                             </Link>
                         </li>
                         <Link to = "/pages">
-                            <li className="nav-item">
-                                <p className="nav-link">
-                                        Pages
-                                </p>
-                            </li>
+                            <li className="nav-item"><p className="nav-link">Pages</p></li>
                         </Link>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                <span data-feather="shopping-cart"></span>
-              Products
-                            </a>
-                        </li>
+                        <Link to="/media">
+                            <li className="nav-item"><p className="nav-link">Media</p></li>
+                        </Link>
+
+
                         <li className="nav-item">
                             <a className="nav-link" href="#">
                                 <span data-feather="users"></span>

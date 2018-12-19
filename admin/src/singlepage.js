@@ -1,18 +1,26 @@
 import React from "react";
 import axios from "./axios";
 import { Editor } from '@tinymce/tinymce-react';
+import Uploader from "./uploader";
 
 
 export default class SinglePage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {text: "", editTitle: false, saved: false};
+        this.state = {text: "", editTitle: false, saved: false, unShow: props.unShowSinglePage, unShowUploader: props.unShowUploader };
         this.handleEditorChange = this.handleEditorChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.showEdit = this.showEdit.bind(this);
         this.editSubmit = this.editSubmit.bind(this);
+        this.addToContent = this.addToContent.bind(this);
 
+    }
+
+
+
+    addToContent(data) {
+        this.setState({newpicture: data});
     }
 
     editSubmit(e) {
@@ -26,6 +34,8 @@ export default class SinglePage extends React.Component {
     showEdit() {
         this.setState({editTitle: true});
     }
+
+
 
     handleEditorChange(e) {
 
@@ -58,12 +68,19 @@ export default class SinglePage extends React.Component {
 
     render() {
 
+
+
         if (!this.state.text.content) {
             return null;
         }
 
+
+
+        console.log("a state singlepage: ", this.state);
         return (
+
             <div>
+                <button className ="btn btn-primary mt-5 mb-5" onClick = {this.state.unShow}>Back to list</button>
                 {!this.state.editTitle && <div className = "row">{this.state.text.title} <button onClick = {this.showEdit} className = "btn btn-primary mt-5 mb-5">Edit Title </button></div>}
 
                 {this.state.editTitle &&
@@ -72,8 +89,7 @@ export default class SinglePage extends React.Component {
                             <button className = "btn btn-primary mt-5 mb-5">Save</button>
                         </form>
                 }
-
-
+                <div className="d-none" id="hi"><Uploader unShow = {this.state.unShowUploader} addToContent = {this.addToContent}/></div>
 
                 <form onSubmit={this.handleSubmit}>
 
@@ -85,8 +101,9 @@ export default class SinglePage extends React.Component {
                         apiKey='ypsenvpusy2kkhk3uoz1dmg5730yfcmbclt42ttpfo898oxr'
                         initialValue={this.state.text.content}
                         init={{
-                            plugins: 'link image code',
-                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code styleselect',
+                            plugins: 'link image code ',
+                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code styleselect | image | customButton',
+
 
                             style_formats: [
                                 {title: 'Headers', items: [
@@ -122,14 +139,29 @@ export default class SinglePage extends React.Component {
                             content_css: "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css",
 
                             width: 1100,
-                            height: 700
+                            height: 700,
+                            setup: function (editor) {
+                                console.log("ez az enyem", this.state);
+                                editor.addButton('customButton', {
+                                    text: 'Upload Picture',
+                                    context: 'tags',
+                                    onClick: function() {
+                                        var hi = document.getElementById("hi");
+                                        hi.classList.add("d-block");
+
+                                    }
+                                });
+                            }
+
                         }}
                         onChange={this.handleEditorChange}
                     />
 
+
                     <button className = "btn btn-primary mt-5 mb-5">Save</button>
 
                 </form>
+
 
             </div>
         );

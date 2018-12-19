@@ -103,3 +103,25 @@ body {
 tr {
     cursor: pointer;
 }
+
+.back p {
+    transition: 0.5s;
+}
+
+.back p:before {
+    content: "\00ab";
+    opacity: 0;
+    top: 0;
+    left: -25px;
+    transition: 0.5s;
+}
+
+.back:hover p {
+    padding-left: 20px;
+    background: chocolate;
+}
+
+.back:hover p:before {
+    opacity: 1;
+    right: 0;
+}

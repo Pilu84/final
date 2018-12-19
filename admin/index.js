@@ -6,6 +6,31 @@ const cookieSession = require("cookie-session");
 const db = require("./db");
 const csurf = require("csurf");
 const bcrypt = require("./cript");
+const s3 = require("./s3");
+
+
+var multer = require("multer");
+var uidSafe = require("uid-safe");
+var path = require("path");
+
+var diskStorage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, __dirname + "/uploads");
+    },
+    filename: function(req, file, callback) {
+        uidSafe(24).then(function(uid) {
+            callback(null, uid + path.extname(file.originalname));
+        });
+    }
+});
+
+var uploader = multer({
+    storage: diskStorage,
+    limits: {
+        fileSize: 2097152
+    }
+});
+
 
 app.use(compression());
 
@@ -81,6 +106,36 @@ app.get('/login', function(req, res) {
     }
 });
 
+app.get("/getmedia", async (req, res) => {
+    const results = await db.getPictureUrl();
+
+    res.json(results.rows);
+});
+
+app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+    if(req.file) {
+
+        const s3 = require("./config.json");
+        var fileurl = s3.s3Url + req.file.filename;
+
+        db.uploadPicture(fileurl, req.session.id, req.file.originalname).then(results => {
+            if (results.rows) {
+                res.json({succes: true,
+                    picture: results.rows[0]});
+            }
+        }).catch(err => {
+            res.json({succes: false});
+            console.log("error by writing database: ", err);
+        });
+    }
+});
+
+app.post("/createnewpage", async (req, res) => {
+    let basicContent = `<div><h1>${req.body.title}</h1></div>`;
+    const results = await db.createNewPage(req.body.title, req.session.id, basicContent);
+
+    res.json(results.rows);
+});
 
 app.get("/getpages", async (req, res) => {
 

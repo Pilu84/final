@@ -38,3 +38,22 @@ exports.updatePageName = (pageid, name) => {
 
     return db.query(`SELECT * FROM page WHERE id = $1`, [pageid]);
 };
+
+
+exports.createNewPage = (title, userid, basiccontent) => {
+    return db.query(`INSERT INTO page (title, content, status, author, languages) VALUES($1, $3, 'active', $2, 'eng')
+                    RETURNING id`,
+
+    [title, userid, basiccontent]);
+};
+
+exports.uploadPicture = (file, id, title) => {
+    return db.query(`INSERT INTO media (title, url, status, author) VALUES ($3, $1, 'active', $2)
+                    RETURNING *`,
+
+    [file, id, title]);
+};
+
+exports.getPictureUrl = () => {
+    return db.query(`SELECT * FROM media`);
+};

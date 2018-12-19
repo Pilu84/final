@@ -5,6 +5,7 @@ import LeftNav from "./leftnav";
 import Mainrole from "./mainrole";
 import Pages from "./pages";
 import AddNewPage from "./newpage";
+import Media from "./media";
 
 
 export default class App extends React.Component {
@@ -31,11 +32,15 @@ export default class App extends React.Component {
                             }} />
 
                             <Route exact path = "/pages" render = { () => {
-                                return <Pages />;
+                                return <Pages showUploader = {this.showUploader} unShowUploader = {this.unShowUploader}/>;
                             }} />
 
                             <Route exact path = "/newpage" render = { () =>{
                                 return <AddNewPage />;
+                            }} />
+
+                            <Route exact path = "/media" render = { () => {
+                                return <Media />;
                             }} />
 
 

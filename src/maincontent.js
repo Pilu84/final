@@ -17,8 +17,8 @@ export default class MainContent extends React.Component {
 
 
         if (!this.props.match.params.id) {
-            pageid = 1;
-            this.setState({pageId: 1});
+            pageid = "home";
+            this.setState({pageId: "home"});
         } else {
             pageid = this.props.match.params.id;
             this.setState({pageId: this.props.match.params.id});
@@ -26,25 +26,30 @@ export default class MainContent extends React.Component {
 
         axios.get("/getpages", {params: {page: pageid}}).then(resp => {
 
+
+            if(resp.data.length == 0) {
+                location.replace("/");
+            }
             this.setState({text: resp.data[0]});
         });
     }
 
     render() {
 
-        console.log("a props: ", this.state.pageId);
+
         if (!this.state.text.content) {
             return null;
         }
 
         const carousel = (pageid) => {
-            if (pageid == 1) {
+            if (pageid == "home") {
                 return <Carousel />;
             }
         };
         return (
             <div>
                 {carousel(this.state.pageId)}
+
                 <div dangerouslySetInnerHTML={{ __html: this.state.text.content }} />
             </div>
         );

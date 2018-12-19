@@ -9,10 +9,16 @@ export default class Pages extends React.Component {
 
         this.state = {element: "", showNewpage: false, showPage: false, pageId: ""};
         this.handleClick = this.handleClick.bind(this);
+        this.unShowSinglePage = this.unShowSinglePage.bind(this);
+
     }
 
     handleClick(e) {
         this.setState({showPage: true, pageId: e.currentTarget.id});
+    }
+
+    unShowSinglePage() {
+        this.setState({showPage: false});
     }
 
     componentDidMount() {
@@ -23,13 +29,15 @@ export default class Pages extends React.Component {
 
     render() {
 
+
+
         return(
             <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div className="pages">
                     <h1>Pages</h1>
                     <div className="container">
                         <Link to = "/newpage"><button type="button" className = "btn btn-primary mt-5 mb-5">Add new page</button></Link>
-                        {!this.state.howNewpage && !this.state.showPage &&<table className="table table-hover">
+                        {!this.state.showNewpage && !this.state.showPage &&<table className="table table-hover">
                             <thead>
                                 <tr>
                                     <th>ID</th>
@@ -54,7 +62,7 @@ export default class Pages extends React.Component {
                             </tbody>
                         </table> }
 
-                        {this.state.showPage && <SinglePage pageid={this.state.pageId}/>}
+                        {this.state.showPage && <SinglePage pageid={this.state.pageId} unShowSinglePage={this.unShowSinglePage} unShowUploader = {this.unShowUploader}/>}
                     </div>
 
                 </div>

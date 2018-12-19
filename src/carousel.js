@@ -19,7 +19,7 @@ export default class Carousel extends React.Component {
 
                     <div className="carousel-inner">
                         <div className="carousel-item active">
-                            <img src="wallpaper-M2010s.PNG" alt="" />
+                            <img src="https://s3.amazonaws.com/aquariumdesign/oYdLBAPAh6hLzc_8Ca9iiU96QC2J6q-f.PNG" alt="" />
                             <div className="carousel-caption">
                                 <h3>Los Angeles</h3>
                                 <p>We had such a great time in LA!</p>
@@ -27,7 +27,7 @@ export default class Carousel extends React.Component {
                         </div>
 
                         <div className="carousel-item">
-                            <img src="MA_11944_PlantedOasis_SlateWall.jpg" alt="" />
+                            <img src="https://s3.amazonaws.com/aquariumdesign/IFGqwTar0BAJyZJyn10PZnUoeS8BLXUt.jpg" alt="" />
                             <div className="carousel-caption">
                                 <h3>Chicago</h3>
                                 <p>Thank you, Chicago!</p>
@@ -35,7 +35,7 @@ export default class Carousel extends React.Component {
                         </div>
 
                         <div className="carousel-item">
-                            <img src="wallpaper-M2010s.PNG" alt="New York" />
+                            <img src="https://s3.amazonaws.com/aquariumdesign/oYdLBAPAh6hLzc_8Ca9iiU96QC2J6q-f.PNG" alt="New York" />
                             <div className="carousel-caption">
                                 <h3>New York</h3>
                                 <p>We love the Big Apple!</p>

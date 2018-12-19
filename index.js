@@ -22,7 +22,6 @@ app.use(express.static("./public"));
 app.use(express.static("./uploads"));
 
 app.get("/getpages", async (req, res) => {
-
     const results = await db.getContent(req.query.page);
     res.json(results.rows);
 });

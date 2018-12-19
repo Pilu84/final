@@ -19,10 +19,10 @@ export default class Nav extends React.Component{
                 <div className="row collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul className="navbar-nav justify-content-end">
                         <li className="nav-item">
-                            <Link to = "/" ><p className="nav-link">Home</p></Link>
+                            <Link to = "/" className="nav-link">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to = "/2" ><p className="nav-link" href="/2">Second</p></Link>
+                            <Link to = "/second" className="nav-link" >Second</Link>
                         </li>
                     </ul>
 

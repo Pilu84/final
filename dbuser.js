@@ -21,3 +21,7 @@ exports.getPicturesToGallery = (ids) => {
 
         [ids]);
 };
+
+exports.getNaviName = () => {
+    return db.query(`SELECT * FROM component_meta WHERE ccomponent_id = 3 AND key = 'nav_name'`);
+};

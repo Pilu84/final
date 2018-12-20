@@ -165,7 +165,7 @@ app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
 });
 
 app.post("/createnewpage", async (req, res) => {
-    let basicContent = `<div><h1>${req.body.title}</h1></div>`;
+    let basicContent = `<div class="row fluid"><div class="col-sm-4 p-5"></div><div class="col-sm-8 p-5"></div>`;
     const results = await db.createNewPage(req.body.title, req.session.id, basicContent);
 
     res.json(results.rows);

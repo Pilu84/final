@@ -7,16 +7,21 @@ export default class Gallery extends React.Component{
         super(props);
         this.state = {gallery: "", galleryid: props.galleryid, anim: false, currentid: ""};
         this.handleClick = this.handleClick.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     handleClick(e) {
-        this.setState({anim: true, currentid: e.currentTarget.media_id});
+        this.setState({anim: true, currentid: e.currentTarget.id});
+    }
+
+    handleClose() {
+        this.setState({anim: false});
     }
 
 
     componentDidMount() {
         axios.get("/getgallery", {params: {galleryid: this.state.galleryid}}).then(resp => {
-            console.log("resp: ", resp.data);
+
             this.setState({gallery: resp.data});
         });
     }
@@ -28,13 +33,15 @@ export default class Gallery extends React.Component{
         if(!gallery) {
             return null;
         }
+
+
         return(
             <div className="row m-5">
 
                 {gallery && gallery.map((pictures, index) => {
                     return (
 
-                        <div onClick={this.handleClick} className="col-md-4 mb-2 d-flex flex-column justify-content-center" key={index}>
+                        <div onClick={this.handleClick} className="col-md-4 mb-2 d-flex flex-column justify-content-center" key={index} id={pictures.media_id}>
                             <div className="thumbnail">
                                 <img src={pictures.url} className="img-thumbnail"/>
                             </div>
@@ -44,30 +51,47 @@ export default class Gallery extends React.Component{
                 })}
 
                 {this.state.anim &&
-                    <div className="jumbotron mt-5 mh-100">
+                    <div className="row fluid fixgallery">
 
 
-                        <div id="aquarium" className="carousel slide" data-ride="carousel">
+                        <div id="aquarium" className="carousel slide p-5 justify-content-center" data-ride="carousel">
+
                             <ul className="carousel-indicators">
-                                <li data-target="#aquarium" data-slide-to="0" className="active"></li>
-                                <li data-target="#aquarium" data-slide-to="1"></li>
-                                <li data-target="#aquarium" data-slide-to="2"></li>
+                                {gallery && gallery.map((elem, index) => {
+                                    if(elem.media_id == this.state.currentid) {
+                                        return(
+                                            <li data-target="#aquarium" data-slide-to={index} className="active" key={index}></li>
+                                        );
+                                    } else {
+                                        return(
+                                            <li data-target="#aquarium" data-slide-to={index} key={index}></li>
+                                        );
+                                    }
+                                })}
+
                             </ul>
+                            <div className="carousel-inner">
+                                <div onClick={this.handleClose} className="escape d-flex justify-content-center"><p className="close" aria-label="close">&times;</p></div>
+                                {gallery && gallery.map((elem, index) => {
+                                    if(elem.media_id == this.state.currentid) {
+                                        return(
+                                            <div className="carousel-item active" key={index}><img src={elem.url} alt="" /></div>
+                                        );
+                                    } else {
+                                        return(
+                                            <div className="carousel-item" key={index}><img src={elem.url} alt="" /></div>
+                                        );
+                                    }
 
-                            {gallery && gallery.map((el, index) => {
+                                })}
+                            </div>
 
-
-                                return(
-                                    <div className="carousel-inner" key={index}>
-                                        <div className="carousel-item">
-                                            <img src={el.url} alt="" />
-                                        </div>
-                                    </div>
-
-                                );
-                            })}
-
-
+                            <a className="carousel-control-prev" href="#aquarium" data-slide="prev">
+                                <span className="carousel-control-prev-icon"></span>
+                            </a>
+                            <a className="carousel-control-next" href="#aquarium" data-slide="next">
+                                <span className="carousel-control-next-icon"></span>
+                            </a>
                         </div>
                     </div>
                 }

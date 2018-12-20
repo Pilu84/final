@@ -1,10 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import axios from "./axios";
 
 export default class Nav extends React.Component{
     constructor() {
         super();
+    }
+
+    componentDidMount() {
+        axios.get("/getnaviname").then(resp => {
+            this.setState({navname: resp.data});
+        });
     }
 
     render() {
@@ -18,6 +24,7 @@ export default class Nav extends React.Component{
                 </button>
                 <div className="row collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul className="navbar-nav justify-content-end">
+
                         <li className="nav-item">
                             <Link to = "/" className="nav-link">Home</Link>
                         </li>

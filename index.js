@@ -40,8 +40,14 @@ app.get("/getgallery", async (req, res) => {
     }
 
     const pictures = await db.getPicturesToGallery(picArr);
-    
+
     res.json(pictures.rows);
+});
+
+app.get("/getnaviname", async (req, res) => {
+    const results = await db.getNaviName();
+
+    res.json(results.rows);
 });
 
 app.get('*', function(req, res) {

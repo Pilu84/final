@@ -57,3 +57,25 @@ exports.uploadPicture = (file, id, title) => {
 exports.getPictureUrl = () => {
     return db.query(`SELECT * FROM media`);
 };
+
+exports.getgallery = () => {
+    return db.query(`SELECT * FROM component WHERE name = 'gallery'`);
+};
+
+exports.getSinglegallery = (id) => {
+    return db.query(`SELECT * FROM component_meta WHERE ccomponent_id = $1`,
+        [id]);
+};
+
+
+exports.getPicturesToGallery = (ids) => {
+    return db.query(`SELECT * FROM media WHERE media_id = ANY($1)`,
+
+        [ids]);
+};
+
+exports.updateGallery = (pictures, galleryid) => {
+    return db.query(`UPDATE component_meta SET value = $1 WHERE ccomponent_id = $2 AND key = 'picture'`,
+
+        [pictures, galleryid]);
+};

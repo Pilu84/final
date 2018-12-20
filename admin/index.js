@@ -112,6 +112,40 @@ app.get("/getmedia", async (req, res) => {
     res.json(results.rows);
 });
 
+app.get("/getgallery", async (req, res) => {
+    const results = await db.getgallery();
+
+    res.json(results.rows);
+});
+
+app.get("/getsinglegallery", async (req, res) => {
+    const results = await db.getSinglegallery(req.query.gallery);
+
+    var picArr = await getPicArr(results.rows);
+    async function getPicArr(result) {
+        for (var i = 0; i < result.length; i++) {
+            if (result[i].key == "picture") {
+
+                return JSON.parse(result[i].value);
+            }
+        }
+    }
+
+    const pictures = await db.getPicturesToGallery(picArr);
+
+    res.json(pictures.rows);
+});
+
+
+app.post("/updateGallery", async (req, res) => {
+
+    console.log(req.body.pictures, req.body.galleryid);
+
+    const results = await db.updateGallery(req.body.pictures, req.body.galleryid);
+
+    res.json({succes: true, result: results.rows});
+});
+
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
     if(req.file) {
 

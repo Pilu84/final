@@ -6,11 +6,14 @@ import Mainrole from "./mainrole";
 import Pages from "./pages";
 import AddNewPage from "./newpage";
 import Media from "./media";
+import Gallery from "./gallery";
+
 
 
 export default class App extends React.Component {
     constructor() {
         super();
+        
     }
 
 
@@ -32,7 +35,7 @@ export default class App extends React.Component {
                             }} />
 
                             <Route exact path = "/pages" render = { () => {
-                                return <Pages showUploader = {this.showUploader} unShowUploader = {this.unShowUploader}/>;
+                                return <Pages showUploader = {this.ShowUploader} unShowUploader = {this.unShowUploader}/>;
                             }} />
 
                             <Route exact path = "/newpage" render = { () =>{
@@ -41,6 +44,10 @@ export default class App extends React.Component {
 
                             <Route exact path = "/media" render = { () => {
                                 return <Media />;
+                            }} />
+
+                            <Route exaxt path = "/gallery" render = { () => {
+                                return <Gallery showUploader = {this.ShowUploader}/>;
                             }} />
 
 

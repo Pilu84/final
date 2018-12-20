@@ -24,6 +24,9 @@ export default class Nav extends React.Component{
                         <li className="nav-item">
                             <Link to = "/second" className="nav-link" >Second</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link to = "/gallery" className="nav-link" >Gallery</Link>
+                        </li>
                     </ul>
 
                 </div>

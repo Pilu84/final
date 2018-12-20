@@ -24,25 +24,10 @@ export default class LeftNav extends React.Component{
                             <li className="nav-item"><p className="nav-link">Media</p></li>
                         </Link>
 
+                        <Link to="/gallery">
+                            <li className="nav-item"><p className="nav-link">Gallery</p></li>
+                        </Link>
 
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                <span data-feather="users"></span>
-              Customers
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
-              Reports
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">
-                                <span data-feather="layers"></span>
-              Integrations
-                            </a>
-                        </li>
                     </ul>
 
                 </div>

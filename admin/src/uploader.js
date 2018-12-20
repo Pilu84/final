@@ -7,7 +7,7 @@ export default class Uploader extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.state = {unShow:  props.unShowUploader, addPicture: props.addNewPicture, addToContent: props.addToContent};
+        this.state = {unShow:  props.unShowUploader, addPicture: props.addNewPicture};
 
 
     }
@@ -32,13 +32,9 @@ export default class Uploader extends React.Component {
 
 
         axios.post("/upload", formData).then(({data}) => {
-            console.log("a content: ", data.picture.url);
-            // if(this.state.addToContent) {
-            this.state.addToContent(data.picture.url);
-            // }
-            //
-            // this.state.unShow();
-            // this.state.addPicture(data.picture);
+
+            this.state.unShow();
+            this.state.addPicture(data.picture);
 
         });
 

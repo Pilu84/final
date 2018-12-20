@@ -26,6 +26,23 @@ app.get("/getpages", async (req, res) => {
     res.json(results.rows);
 });
 
+app.get("/getgallery", async (req, res) => {
+    const results = await db.getPictureFromMeta(req.query.galleryid);
+
+    var picArr = await getPicArr(results.rows);
+    async function getPicArr(result) {
+        for (var i = 0; i < result.length; i++) {
+            if (result[i].key == "picture") {
+
+                return JSON.parse(result[i].value);
+            }
+        }
+    }
+
+    const pictures = await db.getPicturesToGallery(picArr);
+    
+    res.json(pictures.rows);
+});
 
 app.get('*', function(req, res) {
     res.sendFile(__dirname + '/index.html');

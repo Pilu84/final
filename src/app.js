@@ -4,6 +4,7 @@ import Nav from "./nav";
 import MainContent from "./maincontent";
 import { BrowserRouter, Route } from "react-router-dom";
 
+
 export default class App extends React.Component {
     constructor() {
         super();
@@ -28,6 +29,7 @@ export default class App extends React.Component {
                         return <MainContent {...props}
                             key = {props.match.url }/>;
                     }} />
+
 
 
                 </div>

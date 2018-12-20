@@ -125,3 +125,12 @@ tr {
     opacity: 1;
     right: 0;
 }
+
+.fix-picture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2009;
+    height: 100vh;
+    overflow-y: scroll;
+}

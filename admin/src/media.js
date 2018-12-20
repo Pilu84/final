@@ -37,7 +37,7 @@ export default class Media extends React.Component{
 
 
     render() {
-        console.log("a this state: ", this.state.picture);
+        
         const { picture } = this.state;
         return(
             <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">

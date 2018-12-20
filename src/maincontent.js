@@ -1,11 +1,12 @@
 import React from "react";
 import axios from "./axios";
 import Carousel from "./carousel";
+import Gallery from "./gallery";
 
 export default class MainContent extends React.Component {
     constructor() {
         super();
-        this.state = {text: "", pageid: ""};
+        this.state = {text: "", pageid: "", galleryid: 2};
 
     }
 
@@ -46,9 +47,16 @@ export default class MainContent extends React.Component {
                 return <Carousel />;
             }
         };
+
+        const gallery = (pageid) => {
+            if(pageid == "gallery") {
+                return <Gallery galleryid = {this.state.galleryid}/>;
+            }
+        };
         return (
             <div>
                 {carousel(this.state.pageId)}
+                {gallery(this.state.pageId)}
 
                 <div dangerouslySetInnerHTML={{ __html: this.state.text.content }} />
             </div>

@@ -56,9 +56,10 @@ export default class MainContent extends React.Component {
         return (
             <div>
                 {carousel(this.state.pageId)}
-                {gallery(this.state.pageId)}
+
 
                 <div dangerouslySetInnerHTML={{ __html: this.state.text.content }} />
+                {gallery(this.state.pageId)}
             </div>
         );
     }

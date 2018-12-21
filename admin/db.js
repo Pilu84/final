@@ -79,3 +79,15 @@ exports.updateGallery = (pictures, galleryid) => {
 
         [pictures, galleryid]);
 };
+
+exports.updateNavname = (id, arrayNav) => {
+    return db.query(`UPDATE component_meta SET value = $2 WHERE cmeta_id = $1 AND key = 'nav_name'
+                    RETURNING *`,
+
+    [id, arrayNav]);
+};
+
+
+exports.getNaviName = () => {
+    return db.query(`SELECT * FROM component_meta WHERE ccomponent_id = 1 AND key = 'nav_name'`);
+};

@@ -27,7 +27,7 @@ export default class SingleGallery extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-
+        console.log("submit: ", JSON.stringify(this.state.ids));
         let sendData = {pictures: JSON.stringify(this.state.ids), galleryid: this.props.galleryid};
 
         axios.post("/updateGallery", sendData).then(resp => {
@@ -51,7 +51,7 @@ export default class SingleGallery extends React.Component {
     }
 
     addNewPicture(data) {
-        console.log("a data: ", data);
+
 
         this.setState({
             picture: [...this.state.picture, data],
@@ -97,7 +97,7 @@ export default class SingleGallery extends React.Component {
 
 
         const { picture } = this.state;
-        console.log(this.state);
+        
         return(
 
             <div>

@@ -138,12 +138,36 @@ app.get("/getsinglegallery", async (req, res) => {
 
 
 app.post("/updateGallery", async (req, res) => {
-
-    console.log(req.body.pictures, req.body.galleryid);
+    console.log(req.body.pictures);
 
     const results = await db.updateGallery(req.body.pictures, req.body.galleryid);
 
     res.json({succes: true, result: results.rows});
+});
+
+app.post("/updatenav", async (req, res) => {
+
+    const results = await db.updateNavname(3, req.body.navname);
+    res.json({succes: true, navname: results.rows});
+});
+
+
+app.get("/getnaviname", async (req, res) => {
+    const results = await db.getNaviName();
+
+    var navArr = await setNaviName(results.rows);
+
+    async function setNaviName(result) {
+        for (var i = 0; i < result.length; i++) {
+            if (result[i].key == "nav_name") {
+
+                return JSON.parse(result[i].value);
+            }
+        }
+    }
+
+
+    res.json(navArr);
 });
 
 app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {

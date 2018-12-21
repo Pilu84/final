@@ -18,6 +18,3 @@ if(location.pathname === "/login" ) {
 
 
 ReactDOM.render(component, document.querySelector("main"));
-
-
-// ReactDOM.render(<App />, document.querySelector("main"));

@@ -5,6 +5,7 @@ import axios from "./axios";
 export default class Nav extends React.Component{
     constructor() {
         super();
+        this.state = {navname: ""};
     }
 
     componentDidMount() {
@@ -14,6 +15,15 @@ export default class Nav extends React.Component{
     }
 
     render() {
+        console.log("a navname: ", this.state.navname);
+
+        const { navname } = this.state;
+
+        if(!navname) {
+            return null;
+        }
+
+        console.log("a sima: ", navname, typeof navname);
         return(
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark sticky-top own-shadow">
                 <Link to= "/"><p className="navbar-brand">
@@ -25,15 +35,24 @@ export default class Nav extends React.Component{
                 <div className="row collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul className="navbar-nav justify-content-end">
 
-                        <li className="nav-item">
-                            <Link to = "/" className="nav-link">Home</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to = "/second" className="nav-link" >Second</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to = "/gallery" className="nav-link" >Gallery</Link>
-                        </li>
+                        {navname && navname.map((elem, index) => {
+                            if (elem == "home") {
+                                return (
+
+                                    <li className="nav-item" key={index}>
+                                        <Link to = "/" className="nav-link">Home</Link>
+                                    </li>
+                                );
+                            } else {
+                                return (
+                                    <li className="nav-item" key={index}>
+                                        <Link to = {elem} className="nav-link" >{elem}</Link>
+                                    </li>
+                                );
+                            }
+                        })}
+
+
                     </ul>
 
                 </div>

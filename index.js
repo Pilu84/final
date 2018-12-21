@@ -47,7 +47,19 @@ app.get("/getgallery", async (req, res) => {
 app.get("/getnaviname", async (req, res) => {
     const results = await db.getNaviName();
 
-    res.json(results.rows);
+    var navArr = await setNaviName(results.rows);
+
+    async function setNaviName(result) {
+        for (var i = 0; i < result.length; i++) {
+            if (result[i].key == "nav_name") {
+
+                return JSON.parse(result[i].value);
+            }
+        }
+    }
+
+
+    res.json(navArr);
 });
 
 app.get('*', function(req, res) {

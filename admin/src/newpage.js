@@ -5,7 +5,7 @@ import SinglePage from "./singlepage";
 export default class AddNewPage extends React.Component {
     constructor() {
         super();
-        this.state = {showPage: false};
+        this.state = {showPage: false, navname: ""};
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -26,10 +26,24 @@ export default class AddNewPage extends React.Component {
             this.setState({showPage: true, pageId: resp.data[0].id});
         });
 
+        var newName = [...this.state.navname, this.state.title];
 
+        let sendData = {navname: JSON.stringify(newName)};
 
+        console.log("a navname: ", sendData, typeof sendData);
+        axios.post("/updatenav", sendData).then(resp => {
+            this.setState({navname: resp.data});
+        });
+    }
+
+    componentDidMount() {
+        axios.get("/getnaviname").then(resp=> {
+
+            this.setState({navname: resp.data});
+        });
     }
     render() {
+        console.log(typeof this.state.navname, this.state.navname);
         return(
             <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
                 <div className="pages">

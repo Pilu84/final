@@ -63,7 +63,7 @@ export default class Nav extends React.Component{
     render() {
         return (
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark sticky-top own-shadow">
-                <a className="navbar-brand" href="#">
+                <a className="navbar-brand" href="/">
                     <img src="./uploads/logo.jpg" width="60" height="60" className="d-inline-block align-center" alt="" />Aquarium Design
                 </a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

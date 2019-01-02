@@ -54,9 +54,9 @@ export default class Gallery extends React.Component{
                     <div className="row fluid fixgallery">
 
 
-                        <div id="aquarium" className="carousel slide p-5 justify-content-center" data-ride="carousel">
+                        <div id="aquarium" className="carousel slide w-100 d-flex justify-content-center" data-ride="carousel">
 
-                            <ul className="carousel-indicators">
+                            <ul className="carousel-indicators mb-5">
                                 {gallery && gallery.map((elem, index) => {
                                     if(elem.media_id == this.state.currentid) {
                                         return(
@@ -70,7 +70,7 @@ export default class Gallery extends React.Component{
                                 })}
 
                             </ul>
-                            <div className="carousel-inner">
+                            <div className="carousel-inner w-75 h-100 d-flex flex-column justify-content-center align-items-center">
                                 <div onClick={this.handleClose} className="escape d-flex justify-content-center"><p className="close" aria-label="close">&times;</p></div>
                                 {gallery && gallery.map((elem, index) => {
                                     if(elem.media_id == this.state.currentid) {

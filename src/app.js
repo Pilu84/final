@@ -1,5 +1,4 @@
 import React from "react";
-import BtPictures from "./bt-pictures";
 import Nav from "./nav";
 import MainContent from "./maincontent";
 import { BrowserRouter, Route } from "react-router-dom";
@@ -16,7 +15,6 @@ export default class App extends React.Component {
             <BrowserRouter>
                 <div>
 
-                    <BtPictures />
 
                     <Nav />
 

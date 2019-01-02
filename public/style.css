@@ -52,5 +52,6 @@ main {
     left: 0;
     z-index: 2000;
     width: 100%;
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(0, 0, 0, 0.5);
+    height: 100vh;
 }

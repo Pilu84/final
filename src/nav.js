@@ -15,7 +15,7 @@ export default class Nav extends React.Component{
     }
 
     render() {
-        console.log("a navname: ", this.state.navname);
+        
 
         const { navname } = this.state;
 
@@ -23,7 +23,7 @@ export default class Nav extends React.Component{
             return null;
         }
 
-        console.log("a sima: ", navname, typeof navname);
+
         return(
             <nav className="navbar navbar-expand-sm bg-dark navbar-dark sticky-top own-shadow">
                 <Link to= "/"><p className="navbar-brand">

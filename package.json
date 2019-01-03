@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "build": "node build.js",
-        "start": "node bundle-server.js",
+        "start": "node index.js",
+        "heroku-postbuild": "node bundle-server.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "engines": {

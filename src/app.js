@@ -16,6 +16,7 @@ export default class App extends React.Component {
                 <div>
 
 
+                    <Nav />
 
                     <Route exact path = "/" render = { props => {
                         return <MainContent {...props}

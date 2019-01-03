@@ -55,3 +55,52 @@ main {
     background: rgba(0, 0, 0, 0.5);
     height: 100vh;
 }
+
+
+.img-bg {
+    background: url('https://s3.amazonaws.com/aquariumdesign/IFGqwTar0BAJyZJyn10PZnUoeS8BLXUt.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    display: table;
+}
+
+.img-bg2 {
+    background: url('https://s3.amazonaws.com/aquariumdesign/oYdLBAPAh6hLzc_8Ca9iiU96QC2J6q-f.PNG') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    display: table;
+}
+
+.img-bg3 {
+    background: url('file:///Users/pilu/desktop/spiced/example/aquarium/uploads/MA_11944_PlantedOasis_SlateWall.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    display: table;
+}
+
+
+.ownmargin {
+    margin-top: 300px;
+    margin-bottom: 150px;
+}
+
+#services {
+    background-color: #306d9f;
+    color: #ffffff;
+}
+
+#services .glyphicon {
+	  border: 2px solid #FFFFFF;
+	  border-radius: 50%;
+	  display: inline-block;
+	  font-size: 60px;
+	  height: 140px;
+	  line-height: 140px;
+	  text-align: center;
+	  vertical-align: middle;
+	  width: 140px;
+	}
+
+.pad-section {
+	  padding: 50px 0;
+	}

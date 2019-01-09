@@ -2,6 +2,7 @@ import React from "react";
 import axios from "./axios";
 import Carousel from "./carousel";
 import Gallery from "./gallery";
+import Contact from "./contact";
 
 export default class MainContent extends React.Component {
     constructor() {
@@ -37,7 +38,8 @@ export default class MainContent extends React.Component {
 
     render() {
 
-
+        //lehet at kellene tenni mindent az apba, es onnan intezni a content betoltest
+        // TODO: Write carousel, gallery, contact to app
         if (!this.state.text.content) {
             return null;
         }
@@ -53,12 +55,19 @@ export default class MainContent extends React.Component {
                 return <Gallery galleryid = {this.state.galleryid}/>;
             }
         };
+
+        const contact = (pageid) => {
+            if (pageid == "contact") {
+                return <Contact />;
+            }
+        };
         return (
             <div>
                 {carousel(this.state.pageId)}
 
 
                 <div dangerouslySetInnerHTML={{ __html: this.state.text.content }} />
+                {contact(this.state.pageId)}
                 {gallery(this.state.pageId)}
             </div>
         );

@@ -1,8 +1,8 @@
 const spicedPg = require('spiced-pg');
-const {dbuser, dbpass} = require("./secrets.json");
+// const {dbuser, dbpass} = require("./secrets.json");
 
-const db = spicedPg(process.env.DATABASE_URL || `postgres:${dbuser}:${dbpass}@localhost:5432/aquariumdesign`);
-// const db = spicedPg(process.env.DATABASE_URL);
+// const db = spicedPg(process.env.DATABASE_URL || `postgres:${dbuser}:${dbpass}@localhost:5432/aquariumdesign`);
+const db = spicedPg(process.env.DATABASE_URL);
 
 
 exports.getContent = id => {

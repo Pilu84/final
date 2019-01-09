@@ -104,3 +104,7 @@ main {
 .pad-section {
 	  padding: 50px 0;
 	}
+
+.carousel-inner {
+    width: 1000px !important;
+}

@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "./axios";
-const API_PATH = 'http://localhost:8080/api/contact/index.php';
+const API_PATH = 'https://localhost:8080/api/contact/index.php';
 
 
 export default class Contact extends React.Component {
@@ -61,7 +61,7 @@ export default class Contact extends React.Component {
                 console.log(this.state);
             })
             .catch(error => this.setState( { error: error.message } ));
-    
+
 
         // axios.post("./contactform.php", this.state).then(resp => {
         //     console.log(resp.data);

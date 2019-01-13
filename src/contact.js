@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "./axios";
-const API_PATH = 'https://localhost:8080/api/contact/index.php';
+const API_PATH = './api/contact/index.php';
 
 
 export default class Contact extends React.Component {

@@ -65,6 +65,8 @@ app.get("/getnaviname", async (req, res) => {
 
 
 app.post("/contactform", async(req, res) => {
+
+    console.log(req.body);
     // res.json({succes: true});
     async function main(){
 
@@ -100,6 +102,7 @@ app.post("/contactform", async(req, res) => {
 
         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
         // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+        res.json({succes: true});
     }
 
     main().catch(console.error);

@@ -1,4 +1,7 @@
 <?php
+header("Access-Control-Allow-Origin: *");
+$rest_json = file_get_contents("php://input");
+$_POST = json_decode($rest_json, true);
 
 
     // Only process POST reqeusts.
@@ -18,7 +21,7 @@
         }
 
         // Set the recipient email address.
-        
+
         $recipient = "bundaoliver@gmail.com";
 
         // Set the email subject.

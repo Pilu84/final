@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "./axios";
+const API_PATH = 'http://localhost:8080/src/contactform.php';
 
 export default class Contact extends React.Component {
     constructor() {
@@ -45,21 +46,26 @@ export default class Contact extends React.Component {
             return;
         }
 
-
-
-
-        axios.post("./contactform.php", this.state).then(resp => {
-            console.log(resp.data);
-
-            if(resp.data.error) {
-                this.setState({error: true});
-                return;
-            }
-
-            if(resp.data.succes) {
-                this.setState({submitted: true});
-            }
+        axios({
+            method: 'post',
+            url: `${API_PATH}`,
+            headers: { 'content-type': 'application/json' },
+            data: this.state
         });
+
+
+        // axios.post("./contactform.php", this.state).then(resp => {
+        //     console.log(resp.data);
+        //
+        //     if(resp.data.error) {
+        //         this.setState({error: true});
+        //         return;
+        //     }
+        //
+        //     if(resp.data.succes) {
+        //         this.setState({submitted: true});
+        //     }
+        // });
     }
 
 

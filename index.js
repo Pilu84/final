@@ -74,18 +74,18 @@ app.post("/contactform", async(req, res) => {
 
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-            host: "mail.maxer.hu",
+            host: "smtp.gmail.com",
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-                user: "no-reply2@aquariumdesign.hu", // generated ethereal user
-                pass: "c1pQGhKx" // generated ethereal password
+                user: "bundaoliver@gmail.com", // generated ethereal user
+                pass: "mucuska1984" // generated ethereal password
             }
         });
 
         // setup email data with unicode symbols
         let mailOptions = {
-            from: '"AquariumDesign" <no-reply2@aquariumdesign.hu>', // sender address
+            from: '"AquariumDesign" <bundaoliver@gmail.com>', // sender address
             to: "bundaoliver@gmail.com", // list of receivers
             subject: "Hello-Test", // Subject line
             text: "Hello world?", // plain text body

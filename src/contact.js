@@ -48,7 +48,7 @@ export default class Contact extends React.Component {
 
 
 
-        axios.post("/contactform.php", this.state).then(resp => {
+        axios.post("./contactform.php", this.state).then(resp => {
             console.log(resp.data);
 
             if(resp.data.error) {

@@ -75,7 +75,7 @@ app.post("/contactform", async(req, res) => {
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
             host: "mail.maxer.hu",
-            port: 587,
+            port: 25,
             secure: false, // true for 465, false for other ports
             auth: {
                 user: "no-reply2@aquariumdesign.hu", // generated ethereal user

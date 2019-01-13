@@ -53,15 +53,15 @@ export default class Contact extends React.Component {
             url: `${API_PATH}`,
             headers: { 'content-type': 'application/json' },
             data: this.state
-          })
-        .then(result => {
-          this.setState( {
-            mailSent: result.data.sent
-          })
-          console.log(this.state);
         })
-        .catch(error => this.setState( { error: error.message } ));
-    };
+            .then(result => {
+                this.setState( {
+                    mailSent: result.data.sent
+                });
+                console.log(this.state);
+            })
+            .catch(error => this.setState( { error: error.message } ));
+    
 
         // axios.post("./contactform.php", this.state).then(resp => {
         //     console.log(resp.data);

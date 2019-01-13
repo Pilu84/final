@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "./axios";
-import $ from 'jquery';
 
 export default class Contact extends React.Component {
     constructor() {
@@ -46,32 +45,21 @@ export default class Contact extends React.Component {
             return;
         }
 
-        $.ajax({
-            type: 'POST',
-            url: "./contactform.php",
-            data: this.state,
-            success: function (response) {
-                console.dir(response);
-            },
-            fail: function (err) {
-                console.dir(err);
+
+
+
+        axios.post("/contactform.php", this.state).then(resp => {
+            console.log(resp.data);
+
+            if(resp.data.error) {
+                this.setState({error: true});
+                return;
+            }
+
+            if(resp.data.succes) {
+                this.setState({submitted: true});
             }
         });
-
-
-
-        // axios.post("/contactform.php", this.state).then(resp => {
-        //     console.log(resp.data);
-        //
-        //     if(resp.data.error) {
-        //         this.setState({error: true});
-        //         return;
-        //     }
-        //
-        //     if(resp.data.succes) {
-        //         this.setState({submitted: true});
-        //     }
-        // });
     }
 
 

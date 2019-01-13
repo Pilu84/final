@@ -78,8 +78,8 @@ app.post("/contactform", async(req, res) => {
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-                user: "bundaoliver@gmail.com", // generated ethereal user
-                pass: "mucuska1984" // generated ethereal password
+                user: "", // generated ethereal user
+                pass: "" // generated ethereal password
             }
         });
 

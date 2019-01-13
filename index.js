@@ -74,12 +74,12 @@ app.post("/contactform", async(req, res) => {
 
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-            host: "mail.maxer.hu",
-            port: 25,
+            host: "smtp.ionos.de",
+            port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
-                user: "no-reply2@aquariumdesign.hu", // generated ethereal user
-                pass: "pLin5zGB" // generated ethereal password
+                user: "no-reply@piluart.de", // generated ethereal user
+                pass: "pLin5zGB!" // generated ethereal password
             }
         });
         // setup email data with unicode symbols

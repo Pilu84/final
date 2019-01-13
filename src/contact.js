@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "./axios";
-const API_PATH = 'http://localhost:8080/src/contactform.php';
+const API_PATH = 'http://localhost:8080/api/contact/index.php';
+
 
 export default class Contact extends React.Component {
     constructor() {
@@ -23,7 +24,8 @@ export default class Contact extends React.Component {
         this.setState({
             messageEmail: "",
             messageName: "",
-            messageMessage: ""
+            messageMessage: "",
+            mailSent: false
         });
 
         const {email, name, message } = this.state;
@@ -51,8 +53,15 @@ export default class Contact extends React.Component {
             url: `${API_PATH}`,
             headers: { 'content-type': 'application/json' },
             data: this.state
-        });
-
+          })
+        .then(result => {
+          this.setState( {
+            mailSent: result.data.sent
+          })
+          console.log(this.state);
+        })
+        .catch(error => this.setState( { error: error.message } ));
+    };
 
         // axios.post("./contactform.php", this.state).then(resp => {
         //     console.log(resp.data);
@@ -76,7 +85,7 @@ export default class Contact extends React.Component {
         return (
             <div className="row m-5">
                 {!this.state.submitted &&
-                <form onSubmit={this.handleSubmit} className="form-horizontal w-100">
+                <form onSubmit={this.handleSubmit} className="form-horizontal w-100" action="#">
                     { this.state.error && <div className="alert alert-danger"> Sorry, but something be wrong, please try again! </div>}
 
 

@@ -68,38 +68,26 @@ app.post("/contactform", async(req, res) => {
 
     async function main(){
 
-        // Generate test SMTP service account from ethereal.email
-        // Only needed if you don't have a real mail account for testing
-        // let account = await nodemailer.createTestAccount();
-
-        // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
             host: "smtp.ionos.de",
             port: 587,
-            secure: false, // true for 465, false for other ports
+            secure: false,
             auth: {
-                user: "no-reply@piluart.de", // generated ethereal user
-                pass: "pLin5zGB!" // generated ethereal password
+                user: process.env.emailUser,
+                pass: process.env.email_Pass
             }
         });
-        // setup email data with unicode symbols
         let mailOptions = {
-            from: '"AquariumDesign" <bundaoliver@gmail.com>', // sender address
-            to: "bundaoliver@gmail.com", // list of receivers
-            subject: "Hello-Test", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>" // html body
+            from: '"AquariumDesign" <no-reply@piluart.de>',
+            to: "bundaoliver@gmail.com, vinczehungary@gmail.com",
+            subject: "Teszt uzenet az uj oldalrol",
+            text: "Hello, ez egy uj uzenet az uj oldalrol! A felado: " + req.body.name + "; az email cime: " + req.body.email + "; az uzenete: " + req.body.message + ".",
+            html: "<b>Hello, ez egy uj uzenet az uj oldalrol</b><p><h2>A felado:</h2></br> " + req.body.name + "</p><p><h2>Az email cime:</h2></br>" + req.body.email + "</p><p><h2>Az uzenet:</h2></br> " + req.body.message + "</p></br>"
         };
 
-        // send mail with defined transport object
+
         await transporter.sendMail(mailOptions);
 
-        // console.log("Message sent: %s", info.messageId);
-        // // Preview only available when sending through an Ethereal account
-        // console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-
-        // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-        // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
         res.json({succes: true});
     }
 

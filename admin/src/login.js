@@ -56,9 +56,9 @@ export default class Login extends React.Component {
                 <h1>Login</h1>
                 { this.state.error && <div className="error"> Something wrong! Please try again! </div>}
                 <form onSubmit={this.handleSubmit} id="login">
-                    { this.state.messageEmail && <div className="error"> {this.state.messageEmail} is required! Please try again! </div>}
+                    { this.state.messageEmail && <div className="alert alert-danger"> {this.state.messageEmail} is required! Please try again! </div>}
                     <input onChange = {this.handleChange} className = {this.state.errorClassEmail } name="email" type="text" placeholder="Email" />
-                    { this.state.messagePassword && <div className="error"> {this.state.messagePassword} is required! Please try again! </div>}
+                    { this.state.messagePassword && <div className="alert alert-danger"> {this.state.messagePassword} is required! Please try again! </div>}
                     <input onChange = {this.handleChange} className = {this.state.errorClassPassword } name="password" type="password" placeholder="Your password" />
                     <button>Login</button>
                 </form>

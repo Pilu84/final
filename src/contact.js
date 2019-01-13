@@ -1,11 +1,12 @@
 import React from "react";
+import axios from "./axios";
 
 export default class Contact extends React.Component {
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.state = {};
+        this.state = {error: false, submitted: false};
     }
 
 
@@ -18,18 +19,63 @@ export default class Contact extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        console.log(this.state);
+        this.setState({
+            messageEmail: "",
+            messageName: "",
+            messageMessage: ""
+        });
+
+        const {email, name, message } = this.state;
+
+
+
+        if(!email || !name || !message) {
+            if(!email) {
+                this.setState({messageEmail: "Email"});
+            }
+
+            if(!name) {
+                this.setState({messageName: "Name"});
+            }
+
+            if(!message) {
+                this.setState({messageMessage: "Email"});
+            }
+
+            return;
+        }
+
+
+
+
+        axios.post("/contactform.php", this.state).then(resp => {
+            console.log(resp.data);
+
+            if(resp.data.error) {
+                this.setState({error: true});
+                return;
+            }
+
+            if(resp.data.succes) {
+                this.setState({submitted: true});
+            }
+        });
     }
 
+
+
     render() {
+
+
         return (
             <div className="row m-5">
-
-                <form onClick={this.handleSubmit} className="form-horizontal w-100">
-
+                {!this.state.submitted &&
+                <form onSubmit={this.handleSubmit} className="form-horizontal w-100">
+                    { this.state.error && <div className="alert alert-danger"> Sorry, but something be wrong, please try again! </div>}
 
 
                     <div className="form-group col-sm-5">
+                        { this.state.messageName && <div className="alert alert-danger"> {this.state.messageName} is required! Please try again! </div>}
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-user"></i></span>
@@ -40,19 +86,22 @@ export default class Contact extends React.Component {
 
 
                     <div className="form-group col-sm-5">
+                        { this.state.messageEmail && <div className="alert alert-danger"> {this.state.messageEmail} is required! Please try again! </div>}
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="basic-addon1"><i className="fas fa-at"></i></span>
                             </div>
-                            <input type="emnail" className="form-control" placeholder="Your Email" aria-label="email" aria-describedby="basic-addon1" name="email" onChange={this.handleChange}/>
+                            <input type="email" className="form-control" placeholder="Your Email" aria-label="email" aria-describedby="basic-addon1" name="email" onChange={this.handleChange}/>
                         </div>
                     </div>
 
                     <div className="form-group col-sm-5">
+                        { this.state.messageMessage && <div className="alert alert-danger"> {this.state.messageMessage} is required! Please try again! </div>}
                         <div className="input-group mb-3">
                             <div className="input-group-prepend">
                                 <span className="input-group-text" id="basic-addon1">Üzenet</span>
                             </div>
+
                             <textarea className="form-control" rows="5" name="message" onChange={this.handleChange}></textarea>
                         </div>
                     </div>
@@ -66,6 +115,7 @@ export default class Contact extends React.Component {
 
 
                 </form>
+                }
             </div>
         );
     }

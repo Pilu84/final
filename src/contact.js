@@ -45,21 +45,32 @@ export default class Contact extends React.Component {
             return;
         }
 
-
-
-
-        axios.post("/contactform.php", this.state).then(resp => {
-            console.log(resp.data);
-
-            if(resp.data.error) {
-                this.setState({error: true});
-                return;
-            }
-
-            if(resp.data.succes) {
-                this.setState({submitted: true});
+        $.ajax({
+            type: 'POST',
+            url: "./contactform.php",
+            data: this.state,
+            success: function (response) {
+                console.dir(response);
+            },
+            fail: function (err) {
+                console.dir(err);
             }
         });
+
+
+
+        // axios.post("/contactform.php", this.state).then(resp => {
+        //     console.log(resp.data);
+        //
+        //     if(resp.data.error) {
+        //         this.setState({error: true});
+        //         return;
+        //     }
+        //
+        //     if(resp.data.succes) {
+        //         this.setState({submitted: true});
+        //     }
+        // });
     }
 
 

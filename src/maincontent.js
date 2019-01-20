@@ -1,30 +1,34 @@
 import React from "react";
 import axios from "./axios";
-import Carousel from "./carousel";
-import Gallery from "./gallery";
-import Contact from "./contact";
+
 
 export default class MainContent extends React.Component {
-    constructor() {
-        super();
-        this.state = {text: "", pageid: "", galleryid: 2};
+    constructor(props) {
+        super(props);
+        this.state = {text: "", pageid: "", galleryid: 2, showCarousel: props.showCarousel, unShowCarousel: props.unShowCarousel, showGallery: props.showGallery, unShowGallery: props.unShowGallery, showContact: props.showContact, unShowContact: props.unShowContact};
 
     }
 
 
     componentDidMount() {
 
+        this.state.unShowCarousel();
 
-        let pageid;
+        this.state.unShowContact();
 
+        this.state.unShowGallery();
 
-        if (!this.props.match.params.id) {
-            pageid = "home";
-            this.setState({pageId: "home"});
-        } else {
-            pageid = this.props.match.params.id;
-            this.setState({pageId: this.props.match.params.id});
+        let pageid = this.props.match.params.id;
+        this.setState({pageId: this.props.match.params.id});
+
+        if(pageid == "gallery") {
+            this.state.showGallery();
         }
+
+        if(pageid == "contact") {
+            this.state.showContact();
+        }
+
 
         axios.get("/getpages", {params: {page: pageid}}).then(resp => {
 
@@ -38,37 +42,17 @@ export default class MainContent extends React.Component {
 
     render() {
 
-        //lehet at kellene tenni mindent az apba, es onnan intezni a content betoltest
-        // TODO: Write carousel, gallery, contact to app
+
         if (!this.state.text.content) {
             return null;
         }
 
-        const carousel = (pageid) => {
-            if (pageid == "home") {
-                return <Carousel />;
-            }
-        };
 
-        const gallery = (pageid) => {
-            if(pageid == "gallery") {
-                return <Gallery galleryid = {this.state.galleryid}/>;
-            }
-        };
-
-        const contact = (pageid) => {
-            if (pageid == "contact") {
-                return <Contact />;
-            }
-        };
         return (
-            <div>
-                {carousel(this.state.pageId)}
+            <div className="fluid">
 
+                <div className="fluid" dangerouslySetInnerHTML={{ __html: this.state.text.content }} />
 
-                <div dangerouslySetInnerHTML={{ __html: this.state.text.content }} />
-                {contact(this.state.pageId)}
-                {gallery(this.state.pageId)}
             </div>
         );
     }

@@ -3,3 +3,4 @@ node_modules
 secrets.json
 package-lock.json
 .eslintrc.json
+dbuser.js

@@ -113,6 +113,22 @@ export default class Contact extends React.Component {
                         </div>
                     </div>
 
+                    <div className="form-group col-sm-5">
+                        <div className="input-group mb-3">
+                            <div className="input-group-prepend">
+                                <span className="input-group-text" id="basic-addon1">Your message</span>
+                            </div>
+
+                            <textarea className="form-control" rows="5" name="message" onChange={this.handleChange}></textarea>
+                        </div>
+                    </div>
+
+                    <div className="form-group col-sm-5">
+                        <div className="input-group mb-3">
+                            <button className = "btn btn-primary mt-5 mb-5">Send Email</button>
+                        </div>
+                    </div>
+
 
 
                 </form>

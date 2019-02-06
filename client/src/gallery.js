@@ -43,7 +43,7 @@ export default class Gallery extends React.Component{
 
                         <div onClick={this.handleClick} className="col-md-4 mb-2 d-flex flex-column justify-content-center" key={index} id={pictures.media_id}>
                             <div className="thumbnail">
-                                <img src={pictures.url} className="img-thumbnail"/>
+                                <img src={pictures.url} className="img-thumbnail" alt="Aquariumdesign"/>
                             </div>
                         </div>
 
@@ -58,7 +58,7 @@ export default class Gallery extends React.Component{
 
                             <ul className="carousel-indicators mb-5">
                                 {gallery && gallery.map((elem, index) => {
-                                    if(elem.media_id == this.state.currentid) {
+                                    if(elem.media_id === this.state.currentid) {
                                         return(
                                             <li data-target="#aquarium" data-slide-to={index} className="active" key={index}></li>
                                         );
@@ -73,7 +73,7 @@ export default class Gallery extends React.Component{
                             <div className="carousel-inner w-75 h-100 d-flex flex-column justify-content-center align-items-center">
                                 <div onClick={this.handleClose} className="escape d-flex justify-content-center"><p className="close" aria-label="close">&times;</p></div>
                                 {gallery && gallery.map((elem, index) => {
-                                    if(elem.media_id == this.state.currentid) {
+                                    if(elem.media_id === this.state.currentid) {
                                         return(
                                             <div className="carousel-item active" key={index}><img src={elem.url} alt="" /></div>
                                         );

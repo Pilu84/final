@@ -110,6 +110,14 @@ main {
 }
 
 
+#containerresize {
+    width: 800px;
+    height: 400px;
+    border: 1px solid red;
+    margin: 20px auto;
+    position: relative;
+}
+
 .pane {
     position: absolute;
     left: 0;
@@ -119,16 +127,27 @@ main {
     overflow: hidden;
 }
 
-.pane img {
+.paneimg {
     width: 1000px;
     height: 100%;
     object-fit: cover;
 }
-
 #pane1 {
     z-index: 200;
 }
 
 #pane2 {
     z-index: 100;
+}
+
+#bar {
+    width: 5px;
+    height: 100%;
+    left: 795px;
+    background: black;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    z-index: 300;
+    cursor: pointer;
+    position: absolute;
 }

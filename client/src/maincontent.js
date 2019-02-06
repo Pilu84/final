@@ -5,7 +5,7 @@ import axios from "./axios";
 export default class MainContent extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {text: "", pageid: "", galleryid: 2, showCarousel: props.showCarousel, unShowCarousel: props.unShowCarousel, showGallery: props.showGallery, unShowGallery: props.unShowGallery, showContact: props.showContact, unShowContact: props.unShowContact};
+        this.state = {text: "", pageid: "", galleryid: 2, showCarousel: props.showCarousel, unShowCarousel: props.unShowCarousel, showGallery: props.showGallery, unShowGallery: props.unShowGallery, showContact: props.showContact, unShowContact: props.unShowContact, showBefore: props.showBefore, unShowBefore: props.unShowBefore};
 
     }
 
@@ -18,24 +18,30 @@ export default class MainContent extends React.Component {
 
         this.state.unShowGallery();
 
+        this.state.unShowBefore();
+
         let pageid = this.props.match.params.id;
         this.setState({pageId: this.props.match.params.id});
 
-        if(pageid == "gallery") {
+        if(pageid === "gallery") {
             this.state.showGallery();
         }
 
-        if(pageid == "contact") {
+        if(pageid === "contact") {
             this.state.showContact();
+        }
+
+        if(pageid === "Redisign") {
+            this.state.showBefore();
         }
 
 
         axios.get("/getpages", {params: {page: pageid}}).then(resp => {
 
 
-            if(resp.data.length == 0) {
-                location.replace("/");
-            }
+            // if(resp.data.length == 0) {
+            //     location.replace("/");
+            // }
             this.setState({text: resp.data[0]});
         });
     }

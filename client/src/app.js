@@ -13,7 +13,7 @@ import Contact from "./contact";
 export default class App extends React.Component {
     constructor() {
         super();
-        this.state = {visibleCarousel: true, visibleGallery: false, visibleContact: false};
+        this.state = {visibleCarousel: true, visibleGallery: false, visibleContact: false, visibleBefore: false};
 
         this.showCarousel = this.showCarousel.bind(this);
         this.unShowCarousel = this.unShowCarousel.bind(this);
@@ -21,6 +21,8 @@ export default class App extends React.Component {
         this.unShowGallery = this.unShowGallery.bind(this);
         this.showContact = this.showContact.bind(this);
         this.unShowContact = this.unShowContact.bind(this);
+        this.showBefore = this.showBefore.bind(this);
+        this.unShowBefore = this.unShowBefore.bind(this);
     }
 
     showCarousel() {
@@ -45,6 +47,14 @@ export default class App extends React.Component {
 
     unShowContact() {
         this.setState({visibleContact: false});
+    }
+
+    showBefore() {
+        this.setState({visibleBefore: true});
+    }
+
+    unShowBefore() {
+        this.setState({visibleBefore: false});
     }
 
 
@@ -78,20 +88,16 @@ export default class App extends React.Component {
                             showGallery = {this.showGallery}
                             unShowGallery = {this.unShowGallery}
                             showContact = {this.showContact}
-                            unShowContact = {this.unShowContact}/>;
+                            unShowContact = {this.unShowContact}
+                            showBefore = {this.showBefore}
+                            unShowBefore = {this.unShowBefore} />;
                     }} />
 
                     {this.state.visibleGallery && <Gallery galleryid = {2} />}
 
                     {this.state.visibleContact && <Contact />}
 
-                    <Route exact path = "/beforafter" render = { props => {
-                        return <BeforePicture {...props} />;
-
-                    }} />
-
-
-
+                    {this.state.visibleBefore && <BeforePicture />}
 
 
                 </div>

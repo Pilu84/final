@@ -36,7 +36,7 @@ export default class Nav extends React.Component{
                     <ul className="navbar-nav justify-content-end">
 
                         {navname && navname.map((elem, index) => {
-                            if (elem == "home") {
+                            if (elem === "home") {
                                 return (
 
                                     <li className="nav-item" key={index}>

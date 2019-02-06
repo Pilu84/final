@@ -4,21 +4,13 @@ const compression = require('compression');
 const bodyParser = require("body-parser");
 const db = require("./dbuser");
 const nodemailer = require("nodemailer");
+const path = require("path");
 
 app.use(bodyParser.json());
 app.use(compression());
 
-if (process.env.NODE_ENV != 'production') {
-    app.use(
-        '/bundle.js',
-        require('http-proxy-middleware')({
-            target: 'http://localhost:8081/'
-        })
-    );
-} else {
-    app.use('/bundle.js', (req, res) => res.sendFile(`${__dirname}/bundle.js`));
-}
 
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(express.static("./public"));
 app.use(express.static("./uploads"));
 
@@ -95,8 +87,13 @@ app.post("/contactform", async(req, res) => {
 });
 
 
+// app.get('*', function(req, res) {
+//     res.sendFile(__dirname + '/index.html');
+// });
+
 app.get('*', function(req, res) {
-    res.sendFile(__dirname + '/index.html');
+    res.sendFile(__dirname, 'client/build/index.html');
 });
 
-app.listen(process.env.PORT || 8080, () => console.log("Its run"));
+
+app.listen(process.env.PORT || 3001, () => console.log("Its run"));
